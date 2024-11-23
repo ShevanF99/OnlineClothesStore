@@ -5,11 +5,13 @@ $(document).ready(function(){
         var password = $("#loginpassword").val();
 
         if(username==""){
-            alert("Username Cannot Be Empty!!!");
+            $("#msg").addClass("alert alert-danger");
+            $("#msg").html("<b>User Name Cannot Be Empty!!!</b>");
             return false;
         }
         else if(password==""){
-            alert("Password Cannot Be Empty!!!");
+            $("#msg").addClass("alert alert-danger");
+            $("#msg").html("<b>Password Cannot Be Empty!!!</b>");
             return false;
         }
     });
