@@ -62,6 +62,13 @@ include '../commons/session.php';
             <?php
         }
 
-
         break;
+
+        case "logout";
+            session_destroy();
+            ?>
+            <script>
+                window.location="../view/login.php";
+            </script>
+            <?php
  }

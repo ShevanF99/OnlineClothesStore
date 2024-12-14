@@ -1,12 +1,21 @@
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+<?php
+$url="";
+if(!empty($_SERVER["https"])){
+    $url="https://";
+    }
+else{
+    $url="http://";
+}
 
-    </head>
-    <body>
-      
-    </body>
+$hostname=$_SERVER["HTTP_HOST"];
 
+$url.=$hostname;
+$url.="/onlineclothesstore/view/login.php";
 
+?>
 
-</html>
+<script>
+    window.location="<?php echo $url; ?>";
+</script>
+
+<?php

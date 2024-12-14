@@ -1,6 +1,6 @@
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+        <?php include_once "../includes/bootstrap_css_includes.php"?>
     </head>
     <body>
         <div class="container">
@@ -72,5 +72,5 @@
         </div>
     </body>
     <script src="../js/jquery-3.7.1.js"></script>
-    <!-- <script src="../js/loginValidation.js"></script> -->
+    <script src="../js/loginValidation.js"></script>
 </html>
