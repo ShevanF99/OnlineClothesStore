@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2024 at 10:20 AM
+-- Generation Time: Dec 27, 2024 at 11:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -35,6 +35,13 @@ CREATE TABLE `login` (
   `login_status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`login_id`, `login_username`, `login_password`, `user_id`, `login_status`) VALUES
+(1, 'kamal@esoft.lk', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,20 @@ CREATE TABLE `module` (
   `module_status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `module`
+--
+
+INSERT INTO `module` (`module_id`, `module_name`, `module_icon`, `module_url`, `module_status`) VALUES
+(1, 'Product Management', 'product.png', 'product.php', 1),
+(2, 'Inventory Management', 'inventory.png', 'inventory.php', 1),
+(3, 'Purchasing Management', 'purchasing.png', 'purchasing.php', 1),
+(4, 'Supplier Management', 'supplier.png', 'supplier.php', 1),
+(5, 'Customer Management', 'customer.png', 'customer.php', 1),
+(6, 'Order Management', 'order.png', 'order.php', 1),
+(7, 'Deliver Management', 'delivery.png', 'delivery.php', 1),
+(8, 'User Management', 'user.png', 'user.php', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -61,16 +82,38 @@ CREATE TABLE `role` (
   `role_status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`role_id`, `role_name`, `role_status`) VALUES
+(1, 'Director', 1),
+(2, 'Data Entry Clerk', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_module`
+-- Table structure for table `rolerole_module`
 --
 
-CREATE TABLE `role_module` (
+CREATE TABLE `rolerole_module` (
   `role_id` int(11) NOT NULL,
   `module_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rolerole_module`
+--
+
+INSERT INTO `rolerole_module` (`role_id`, `module_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8);
 
 -- --------------------------------------------------------
 
@@ -89,6 +132,13 @@ CREATE TABLE `user` (
   `user_email` varchar(100) NOT NULL,
   `user_status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_fname`, `user_lname`, `user_dob`, `user_nic`, `user_role`, `user_image`, `user_email`, `user_status`) VALUES
+(1, 'Kamal', 'Perera', '2024-11-05', '956421442V', 1, '', 'kamal@esoft.lk', 1);
 
 --
 -- Indexes for dumped tables
@@ -114,9 +164,9 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `role_module`
+-- Indexes for table `rolerole_module`
 --
-ALTER TABLE `role_module`
+ALTER TABLE `rolerole_module`
   ADD PRIMARY KEY (`role_id`,`module_id`);
 
 --
@@ -133,25 +183,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
