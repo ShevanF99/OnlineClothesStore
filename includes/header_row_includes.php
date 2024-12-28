@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h5 align="center">
-            <? echo $pageName; ?>
+            <?php echo $pageName; ?>
         </h5>
     </div>
 </div>
