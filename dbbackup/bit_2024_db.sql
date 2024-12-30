@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2024 at 11:09 AM
+-- Generation Time: Dec 30, 2024 at 07:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -93,19 +93,19 @@ INSERT INTO `role` (`role_id`, `role_name`, `role_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rolerole_module`
+-- Table structure for table `role_module`
 --
 
-CREATE TABLE `rolerole_module` (
+CREATE TABLE `role_module` (
   `role_id` int(11) NOT NULL,
   `module_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `rolerole_module`
+-- Dumping data for table `role_module`
 --
 
-INSERT INTO `rolerole_module` (`role_id`, `module_id`) VALUES
+INSERT INTO `role_module` (`role_id`, `module_id`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -164,9 +164,9 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `rolerole_module`
+-- Indexes for table `role_module`
 --
-ALTER TABLE `rolerole_module`
+ALTER TABLE `role_module`
   ADD PRIMARY KEY (`role_id`,`module_id`);
 
 --
