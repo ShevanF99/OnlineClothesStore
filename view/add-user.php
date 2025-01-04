@@ -1,15 +1,14 @@
 <?php
 
 include_once '../commons/session.php';
-include_once '../model/module_model.php';
+include_once '../model/user_model.php';
 
 //get user information from session
 $userrow=$_SESSION["user"];
 
-$moduleObj = new Module();
+$userObj = new User();
 
-$moduleResult = $moduleObj->getAllModules();
-
+$roleResult = $userObj->getAllRoles();
 
 ?>
 
@@ -89,7 +88,9 @@ $moduleResult = $moduleObj->getAllModules();
                             <label class="control-label">Image</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="file" class="form-control" name="user_image" id="user_image"/>
+                            <input type="file" class="form-control" name="user_image" id="user_image" onchange="displayImage(this);"/>
+                            <br/>
+                            <img id="img_prev" style=""/>
                         </div>
                     </div>
                     <div class="row">
@@ -121,7 +122,19 @@ $moduleResult = $moduleObj->getAllModules();
                             <label class="control-label">User Role</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" name="userrole" id="userrole"/>
+                            <select  name="user_role" id="user_role" class="form-control" required="required">
+                                <option value="">--------</option>
+                                <?php 
+                                    while($roleRow=$roleResult->fetch_assoc())
+                                    {
+                                ?>
+                                <option value="<?php echo $roleRow["role_id"]; ?>">
+                                    <?php echo $roleRow["role_name"];?>
+                                </option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -129,4 +142,17 @@ $moduleResult = $moduleObj->getAllModules();
         </div>
     </body>
     <script src="../js/jquery-3.7.1.js"></script>
+    <script>
+        function displayImage(input){
+            if(input.files && input.files[0])
+            {
+               var reader = new FileReader();
+               reader.onload = function (e){
+               $("#img_prev").attr('src',e.target.result).width(80).height(60);
+               
+               };
+               reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </html>
