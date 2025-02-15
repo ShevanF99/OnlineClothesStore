@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2024 at 07:31 PM
+-- Generation Time: Feb 15, 2025 at 06:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -24,6 +24,60 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `function`
+--
+
+CREATE TABLE `function` (
+  `function_id` int(11) NOT NULL,
+  `function_name` varchar(50) NOT NULL,
+  `module_id` int(11) NOT NULL,
+  `function_status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `function`
+--
+
+INSERT INTO `function` (`function_id`, `function_name`, `module_id`, `function_status`) VALUES
+(1, 'Add Category', 1, 1),
+(2, 'Update Category', 1, 1),
+(3, 'View Category', 1, 1),
+(4, 'Add Size', 1, 1),
+(5, 'Update Size', 1, 1),
+(6, 'View Size', 1, 1),
+(7, 'Add Product', 1, 1),
+(8, 'Update Product', 1, 1),
+(9, 'View Product', 1, 1),
+(10, 'Add Stock', 2, 1),
+(11, 'Update Stock', 2, 1),
+(12, 'View Stock', 2, 1),
+(13, 'Quality Inspection', 2, 1),
+(14, 'Reports by Quality', 2, 1),
+(15, 'Reports by Quantity', 2, 1),
+(16, 'Add GRN', 2, 1),
+(17, 'Add Purchase Order', 3, 1),
+(18, 'Send Purchase Order', 3, 1),
+(19, 'Generate Purchase Order', 3, 1),
+(20, 'Add Supplier Invoice', 3, 1),
+(21, 'Add User', 8, 1),
+(22, 'Update User', 8, 1),
+(23, 'View User', 8, 1),
+(24, 'Generate User Reports', 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `function_user`
+--
+
+CREATE TABLE `function_user` (
+  `function_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
@@ -31,15 +85,15 @@ CREATE TABLE `login` (
   `login_id` int(11) NOT NULL,
   `login_username` varchar(80) NOT NULL,
   `login_password` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `login_status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `login_status` int(11) NOT NULL DEFAULT 1,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`login_id`, `login_username`, `login_password`, `user_id`, `login_status`) VALUES
+INSERT INTO `login` (`login_id`, `login_username`, `login_password`, `login_status`, `user_id`) VALUES
 (1, 'kamal@esoft.lk', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1);
 
 -- --------------------------------------------------------
@@ -54,21 +108,21 @@ CREATE TABLE `module` (
   `module_icon` varchar(50) NOT NULL,
   `module_url` text NOT NULL,
   `module_status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `module`
 --
 
 INSERT INTO `module` (`module_id`, `module_name`, `module_icon`, `module_url`, `module_status`) VALUES
-(1, 'Product Management', 'product.png', 'product.php', 1),
-(2, 'Inventory Management', 'inventory.png', 'inventory.php', 1),
-(3, 'Purchasing Management', 'purchasing.png', 'purchasing.php', 1),
+(1, 'Product management', 'product.png', 'product.php', 1),
+(2, 'Inventory Management', 'product.png', 'inventory.php', 1),
+(3, 'Purchasing Management', 'order.png', 'purchasing.php', 1),
 (4, 'Supplier Management', 'supplier.png', 'supplier.php', 1),
 (5, 'Customer Management', 'customer.png', 'customer.php', 1),
 (6, 'Order Management', 'order.png', 'order.php', 1),
-(7, 'Deliver Management', 'delivery.png', 'delivery.php', 1),
-(8, 'User Management', 'user.png', 'user.php', 1);
+(7, 'Delivery Management', 'delivery.png', 'delivery.php', 1),
+(8, 'User management', 'user.png', 'user.php', 1);
 
 -- --------------------------------------------------------
 
@@ -80,7 +134,7 @@ CREATE TABLE `role` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(20) NOT NULL,
   `role_status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `role`
@@ -88,7 +142,9 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`role_id`, `role_name`, `role_status`) VALUES
 (1, 'Director', 1),
-(2, 'Data Entry Clerk', 1);
+(2, 'Data Entry Clerk', 1),
+(3, 'Stock Keeper', 1),
+(4, 'Purchasing Manager', 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +155,7 @@ INSERT INTO `role` (`role_id`, `role_name`, `role_status`) VALUES
 CREATE TABLE `role_module` (
   `role_id` int(11) NOT NULL,
   `module_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `role_module`
@@ -113,7 +169,17 @@ INSERT INTO `role_module` (`role_id`, `module_id`) VALUES
 (1, 5),
 (1, 6),
 (1, 7),
-(1, 8);
+(1, 8),
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(3, 2),
+(4, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -125,24 +191,36 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_fname` varchar(20) NOT NULL,
   `user_lname` varchar(30) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
   `user_dob` date NOT NULL,
   `user_nic` varchar(15) NOT NULL,
-  `user_role` int(11) NOT NULL,
   `user_image` varchar(80) NOT NULL,
-  `user_email` varchar(100) NOT NULL,
+  `user_role` int(11) NOT NULL,
   `user_status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_fname`, `user_lname`, `user_dob`, `user_nic`, `user_role`, `user_image`, `user_email`, `user_status`) VALUES
-(1, 'Kamal', 'Perera', '2024-11-05', '956421442V', 1, '', 'kamal@esoft.lk', 1);
+INSERT INTO `user` (`user_id`, `user_fname`, `user_lname`, `user_email`, `user_dob`, `user_nic`, `user_image`, `user_role`, `user_status`) VALUES
+(1, 'Kamal', 'Perera', 'kamal@esoft.lk', '2024-11-05', '951420321V', '', 1, 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `function`
+--
+ALTER TABLE `function`
+  ADD PRIMARY KEY (`function_id`);
+
+--
+-- Indexes for table `function_user`
+--
+ALTER TABLE `function_user`
+  ADD PRIMARY KEY (`function_id`,`user_id`);
 
 --
 -- Indexes for table `login`
@@ -180,10 +258,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `function`
+--
+ALTER TABLE `function`
+  MODIFY `function_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `module`
@@ -195,7 +279,7 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`

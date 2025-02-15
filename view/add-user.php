@@ -37,7 +37,7 @@ $roleResult = $userObj->getAllRoles();
                     </a>
                 </ul>
             </div>
-            <form>
+            <form action="../controller/user_controller.php?status=add_user" method="post">
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-3">
@@ -137,11 +137,29 @@ $roleResult = $userObj->getAllRoles();
                             </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12"> &nbsp; </div>
+                    </div>
+                    <div class="row">
+                        <div id="display_functions">
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-6">
+                            <input type="submit" class="btn btn-primary" value="Submit"/>
+                            <input type="reset" class="btn btn-danger" value="Reset"/>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
     </body>
     <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/uservalidation.js"></script>
     <script>
         function displayImage(input){
             if(input.files && input.files[0])
