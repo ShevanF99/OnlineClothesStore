@@ -37,8 +37,24 @@ $roleResult = $userObj->getAllRoles();
                     </a>
                 </ul>
             </div>
-            <form action="../controller/user_controller.php?status=add_user" method="post">
+            <form action="../controller/user_controller.php?status=add_user" method="post" enctype="multipart/form-data">
                 <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3" id="msg">
+                            
+                        </div>
+                        <?php
+                        if(isset($_GET["msg"]))
+                        {
+                        ?>
+                         <div class="col-md-6 col-md-offset-3 alert alert-danger" >
+                            <?php  echo base64_decode($_GET["msg"]);    ?>
+                        </div>
+                        <?php 
+                        }
+                        ?>
+                        
+                    </div>
                     <div class="row">
                         <div class="col-md-3">
                             <label class="control-label">First Name</label>

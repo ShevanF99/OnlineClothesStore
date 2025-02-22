@@ -32,6 +32,15 @@ class User{
         return $result;
         
     }
+    
+    public function addUser($fname,$lname,$email,$dob,$nic,$user_role,$user_image){
+       
+        $con=$GLOBALS["con"];
+        $sql = "INSERT INTO user(user_fname,user_lname,user_email,user_dob,user_nic,user_role,user_image)VALUES('$fname','$lname','$email','$dob','$nic','$user_role','$user_image')";
+        $con->query($sql) or die($con->error);
+        $user_id=$con->insert_id;
+        return $user_id;
+    }
 
 
 }
