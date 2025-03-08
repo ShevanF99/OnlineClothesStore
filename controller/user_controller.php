@@ -115,6 +115,12 @@ include '../commons/session.php';
             if($user_id>0){
                 
                 $loginObj->addUserLogin($user_id,$email,$nic);
+                
+            //add user contact
+                
+                $userObj->addUserContact($user_id,$cno1);
+                
+                $userObj->addUserContact($user_id,$cno2);
             
             //add user functions
             
@@ -201,5 +207,35 @@ include '../commons/session.php';
         <?php
         
         
+    break;
+
+    case "update_user":
+        
+        $user_id = $_POST["user_id"];
+        
+        $fname = $_POST["fname"];
+        $lname = $_POST["lname"];
+        $email = $_POST["email"];
+        $dob = $_POST["dob"];
+        $nic = $_POST["nic"];
+        $cno1 = $_POST["cno1"];
+        $cno2 = $_POST["cno2"];
+        $user_role = $_POST["user_role"];
+        
+        $user_image = $_FILES["user_image"];
+        $user_functions=$_POST["fun"];
+        
+        try{
+            
+        } catch (Exception $ex) {
+               
+            $msg= $ex->getMessage();
+            $msg= base64_encode($msg);
+            ?>
+            <script>
+                window.location="../view/edit-user.php?msg=<?php echo $msg; ?>";
+            </script>
+            <?php
+        }
     break;
 }

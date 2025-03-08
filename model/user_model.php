@@ -98,4 +98,19 @@ class User{
         return $result;
 
     }
+    
+    public function addUserContact($user_id,$contact_no)
+    {
+        $con=$GLOBALS["con"];
+        $sql="INSERT INTO user_contact (contact_number, user_id) VALUES ('$contact_no','$user_id')";
+        $con->query($sql) or die($con->error);
+    }
+    
+    public function getUserContact($user_id)
+    {
+        $con=$GLOBALS["con"];
+        $sql="SELECT * FROM user_contact WHERE user_id='$user_id'";
+        $result = $con->query($sql) or die($con->error);
+        return $result;
+    }
 }

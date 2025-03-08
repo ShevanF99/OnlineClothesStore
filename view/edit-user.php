@@ -13,6 +13,11 @@ $user_id= base64_decode($_GET["user_id"]);
 
 $userResult=$userObj->getUser($user_id);
 
+$contactResult = $userObj->getUserContact($user_id);
+
+$contactrow1=$contactResult->fetch_assoc();
+$contactrow2=$contactResult->fetch_assoc();
+
 $userRow=$userResult->fetch_assoc();
 
 //getting already assigned user functions
@@ -52,7 +57,7 @@ while($fun_row=$userFunctionResult->fetch_assoc()){
                     </a>
                 </ul>
             </div>
-            <form action="../controller/user_controller.php?status=add_user" method="post" enctype="multipart/form-data">
+            <form action="../controller/user_controller.php?status=update_user" method="post" enctype="multipart/form-data">
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3" id="msg">    
@@ -72,6 +77,7 @@ while($fun_row=$userFunctionResult->fetch_assoc()){
                             <label class="control-label">First Name</label>
                         </div>
                         <div class="col-md-3">
+                            <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
                             <input type="text" class="form-control" name="fname" id="fname" value="<?php echo $userRow["user_fname"];?>"/>
                         </div>
                         <div class="col-md-3">
@@ -140,13 +146,13 @@ while($fun_row=$userFunctionResult->fetch_assoc()){
                             <label class="control-label">Contact No 1</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" name="cno1" id="cno1"/>
+                            <input type="text" class="form-control" name="cno1" id="cno1" value = "<?php echo $contactrow1["contact_number"];?>"/>
                         </div>
                         <div class="col-md-3">
                             <label class="control-label">Contact No 2</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" name="cno2" id="cno2"/>
+                            <input type="text" class="form-control" name="cno2" id="cno2" value = "<?php echo $contactrow2["contact_number"];?>"/>
                         </div>
                     </div>
                     <div class="row">
@@ -215,7 +221,17 @@ while($fun_row=$userFunctionResult->fetch_assoc()){
                                                 <?php
                                                     while($fun_row=$functionResult->fetch_assoc()){
                                                         ?>
-                                                        <input type="checkbox" name="fun[]" value="<?php echo $fun_row["function_id"];?>" checked/>
+                                                        <input type="checkbox" name="fun[]" value="<?php echo $fun_row["function_id"];?>" 
+                                                               
+                                                                <?php
+                                                                    if(in_array($fun_row["function_id"], $functionArray)){
+                                                               ?>
+                                                               checked
+                                                              <?php
+                                                                    }
+                                                                ?>
+                                          
+                                                               />
                                                         <?php echo $fun_row["function_name"];?>
                                                         <br/>
                                                         <?php
